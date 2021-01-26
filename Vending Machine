@@ -1,8 +1,8 @@
-import math
+import math # Imports math module
 
-itemDict = {"Chips":"$1.50" , "Soda":"$2.00", "Cookie":"$2.50"}
-moneyDict = {"f":"5.00", "t":"2.00", "l":"1.00", "q":"0.25", "d":"0.10", "n":"0.05"}
-coinList = ["toonies", "loonies", "quarters", "dimes", "nickels"]
+itemDict = {"Chips":"$1.50" , "Soda":"$2.00", "Cookie":"$2.50"} # Vending machine item dictionary
+moneyDict = {"f":"5.00", "t":"2.00", "l":"1.00", "q":"0.25", "d":"0.10", "n":"0.05"} # Money dictionary
+coinList = ["toonies", "loonies", "quarters", "dimes", "nickels"] # List of coins
 numVending = 1
 totalPaid = 0
 true = 0
@@ -10,29 +10,29 @@ paid = 0
 
 print("Welcome to the vending machine!")
 print(" ")
-for item in itemDict:
-  print(str(numVending) + ". " + item)
+for item in itemDict: # For every item in item dictionary...
+  print(str(numVending) + ". " + item) # Print out the item
   numVending += 1
 print (" ")
 
-while true == 0:
-  optVending = input("Pick an item from the vending machine. (1/2/3) ")
+while true == 0: # Continue the code while true
+  optVending = input("Pick an item from the vending machine. (1/2/3) ") # Pick an item 
   if optVending == "1":
-     print("Chips are " + itemDict["Chips"] + ".")
+     print("Chips are " + itemDict["Chips"] + ".") # Prints out chip cost
      print(" ")
-     purchase = input("Would you like to buy the chips? (Y/N) ")
-     if purchase.lower() == "yes" or purchase.lower() == "y":
-       print("Amount due: " + itemDict["Chips"])
+     purchase = input("Would you like to buy the chips? (Y/N) ") # Asks if they want to buy the chips
+     if purchase.lower() == "yes" or purchase.lower() == "y": # Gets input 
+       print("Amount due: " + itemDict["Chips"]) # Prints how much they need to pay
        print(" ")
-       print("Menu for deposits: \nf - five dollar bill \nt - toonie \nl - loonie \nq - quarter \nd - dime \nn - nickel")
+       print("Menu for deposits: \nf - five dollar bill \nt - toonie \nl - loonie \nq - quarter \nd - dime \nn - nickel") # Menu for ways to pay
        while paid == 0:
-         money = input("Enter your deposit: ")
+         money = input("Enter your deposit: ") # Asks what they will pay with
          money = moneyDict[money]
          money = float(money)
          totalPaid = float(totalPaid)
-         totalPaid += money
-         amountDue = float(itemDict["Chips"].strip("$")) - (totalPaid)
-         if amountDue < 0:
+         totalPaid += money # Adds their payment towards the total amount paid
+         amountDue = float(itemDict["Chips"].strip("$")) - (totalPaid) # Amount due equals to total value of item subtracted by the total amount paid
+         if amountDue < 0: # If the amount due is bigger than 0, that means the vending machine owes them change
             amountDue = abs(amountDue)
             toonies = math.floor(amountDue / 2)
             loonies = math.floor(amountDue - toonies * 2)
@@ -57,7 +57,7 @@ while true == 0:
             print(" ")
             true = 1
             paid = 1
-            print("Please take your change: $" + str("{0:.2f}".format(totalChange)))
+            print("Please take your change: $" + str("{0:.2f}".format(totalChange))) # The user will receive the correct change in two decimals
             if int(toonies) or int(loonies) or int(quarters) or int(dimes) or int(nickels) > 0:
               if int(toonies) > 0:
                 print(toonies + str(" ") + coinList[0])
@@ -81,27 +81,27 @@ while true == 0:
                 print(nickels + str(" ") + coinList[4])
          elif amountDue >= 0:
           print("Amount due: " + str(amountDue))
-     elif purchase.lower() == "no" or purchase.lower() == "n":
+     elif purchase.lower() == "no" or purchase.lower() == "n": # If they do not want to purchase the item, the machine will say goodbye
        print("Ok, have a good day.")
        break
      else:
-       print("Sorry... I didn't catch that.")
+       print("Sorry... I didn't catch that.") # If they did not answer either yes or no, the machine will ask them to repeat again
        print(" ")
-  elif optVending == "2":
-     print("A soda is " + itemDict["Soda"] + ".")
+  elif optVending == "2": # If the user enters 2
+     print("A soda is " + itemDict["Soda"] + ".") # Prints out soda price
      print(" ")
-     purchase = input("Would you like to buy the soda? (Y/N) ")
-     if purchase.lower() == "yes" or purchase.lower() == "y":
-       print("Amount due: " + itemDict["Soda"])
+     purchase = input("Would you like to buy the soda? (Y/N) ") # Asks if user wants to buy soda
+     if purchase.lower() == "yes" or purchase.lower() == "y": # If answer is yes
+       print("Amount due: " + itemDict["Soda"]) # Prints the amount due
        print(" ")
-       print("Menu for deposits: \nf - five dollar bill \nt - toonie \nl - loonie \nq - quarter \nd - dime \nn - nickel")
+       print("Menu for deposits: \nf - five dollar bill \nt - toonie \nl - loonie \nq - quarter \nd - dime \nn - nickel") # Menu to deposit
        while paid == 0:
-         money = input("Enter your deposit: ")
+         money = input("Enter your deposit: ") # Gets input depending on what they deposit
          money = moneyDict[money]
          money = float(money)
          totalPaid = float(totalPaid)
          totalPaid += money
-         amountDue = float(itemDict["Soda"].strip("$")) - (totalPaid)
+         amountDue = float(itemDict["Soda"].strip("$")) - (totalPaid) # Amount due equals to total value of item subtracted by the total amount paid
          if amountDue < 0:
             amountDue = abs(amountDue)
             toonies = math.floor(amountDue / 2)
@@ -150,7 +150,7 @@ while true == 0:
               elif int(nickels) > 0:
                 print(nickels + str(" ") + coinList[4])
          elif amountDue >= 0:
-          print("Amount due: " + str(amountDue))
+          print("Amount due: " + str(amountDue)) # If the total amount paid is still not enough, it will ask again
      elif purchase.lower() == "no" or purchase.lower() == "n":
        print("Ok, have a good day.")
        break
@@ -166,12 +166,12 @@ while true == 0:
        print(" ")
        print("Menu for deposits: \nf - five dollar bill \nt - toonie \nl - loonie \nq - quarter \nd - dime \nn - nickel")
        while paid == 0:
-         money = input("Enter your deposit: ")
+         money = input("Enter your deposit: ") # Gets input depending on what they deposit
          money = moneyDict[money]
          money = float(money)
          totalPaid = float(totalPaid)
          totalPaid += money
-         amountDue = float(itemDict["Cookie"].strip("$")) - (totalPaid)
+         amountDue = float(itemDict["Cookie"].strip("$")) - (totalPaid) # Amount due equals to total value of item subtracted by the total amount paid
          if amountDue < 0:
             amountDue = abs(amountDue)
             toonies = math.floor(amountDue / 2)
@@ -197,7 +197,7 @@ while true == 0:
             print(" ")
             true = 1
             paid = 1
-            print("Please take your change: $" + str("{0:.2f}".format(totalChange)))
+            print("Please take your change: $" + str("{0:.2f}".format(totalChange))) # The user will receive the correct change in two decimals
             if int(toonies) or int(loonies) or int(quarters) or int(dimes) or int(nickels) > 0:
               if int(toonies) > 0:
                 print(toonies + str(" ") + coinList[0])
@@ -229,4 +229,3 @@ while true == 0:
        print(" ") 
   else: 
      print("Sorry, please choose a number between 1 and 3.") 
-
