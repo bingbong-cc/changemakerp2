@@ -1,0 +1,232 @@
+import math
+
+itemDict = {"Chips":"$1.50" , "Soda":"$2.00", "Cookie":"$2.50"}
+moneyDict = {"f":"5.00", "t":"2.00", "l":"1.00", "q":"0.25", "d":"0.10", "n":"0.05"}
+coinList = ["toonies", "loonies", "quarters", "dimes", "nickels"]
+numVending = 1
+totalPaid = 0
+true = 0
+paid = 0
+
+print("Welcome to the vending machine!")
+print(" ")
+for item in itemDict:
+  print(str(numVending) + ". " + item)
+  numVending += 1
+print (" ")
+
+while true == 0:
+  optVending = input("Pick an item from the vending machine. (1/2/3) ")
+  if optVending == "1":
+     print("Chips are " + itemDict["Chips"] + ".")
+     print(" ")
+     purchase = input("Would you like to buy the chips? (Y/N) ")
+     if purchase.lower() == "yes" or purchase.lower() == "y":
+       print("Amount due: " + itemDict["Chips"])
+       print(" ")
+       print("Menu for deposits: \nf - five dollar bill \nt - toonie \nl - loonie \nq - quarter \nd - dime \nn - nickel")
+       while paid == 0:
+         money = input("Enter your deposit: ")
+         money = moneyDict[money]
+         money = float(money)
+         totalPaid = float(totalPaid)
+         totalPaid += money
+         amountDue = float(itemDict["Chips"].strip("$")) - (totalPaid)
+         if amountDue < 0:
+            amountDue = abs(amountDue)
+            toonies = math.floor(amountDue / 2)
+            loonies = math.floor(amountDue - toonies * 2)
+            quarters = (amountDue - toonies * 2 - loonies)
+            quarters = "%.2f" % quarters
+            quarters = float(quarters)
+            quarters = math.floor(quarters/0.25)
+            dimes = (amountDue - toonies * 2 - loonies - quarters * 0.25)
+            dimes = "%.1f" % dimes
+            dimes = float(dimes)
+            dimes = math.floor(dimes*10)
+            nickels = (amountDue - toonies * 2 - loonies - quarters * 0.25 - dimes / 10)
+            nickels = "%.2f" % nickels
+            nickels = float(nickels)
+            nickels = math.floor(nickels * 100 / 5)
+            totalChange = toonies * 2 + loonies * 1 + quarters * 0.25 + dimes * 0.1 + nickels * 0.05
+            toonies = str(toonies)
+            loonies = str(loonies)
+            quarters = str(quarters)
+            dimes = str(dimes)
+            nickels = str(nickels)
+            print(" ")
+            true = 1
+            paid = 1
+            print("Please take your change: $" + str("{0:.2f}".format(totalChange)))
+            if int(toonies) or int(loonies) or int(quarters) or int(dimes) or int(nickels) > 0:
+              if int(toonies) > 0:
+                print(toonies + str(" ") + coinList[0])
+                print(loonies + str(" ") + coinList[1])
+                print(quarters + str(" ") + coinList[2])
+                print(dimes + str(" ") + coinList[3])
+                print(nickels + str(" ") + coinList[4])
+              elif int(loonies) > 0:
+                print(loonies + str(" ") + coinList[1])
+                print(quarters + str(" ") + coinList[2])
+                print(dimes + str(" ") + coinList[3])
+                print(nickels + str(" ") + coinList[4])
+              elif int(quarters) > 0:
+                print(quarters + str(" ") + coinList[2])
+                print(dimes + str(" ") + coinList[3])
+                print(nickels + str(" ") + coinList[4])
+              elif int(dimes) > 0:
+                print(dimes + str(" ") + coinList[3])
+                print(nickels + str(" ") + coinList[4])
+              elif int(nickels) > 0:
+                print(nickels + str(" ") + coinList[4])
+         elif amountDue >= 0:
+          print("Amount due: " + str(amountDue))
+     elif purchase.lower() == "no" or purchase.lower() == "n":
+       print("Ok, have a good day.")
+       break
+     else:
+       print("Sorry... I didn't catch that.")
+       print(" ")
+  elif optVending == "2":
+     print("A soda is " + itemDict["Soda"] + ".")
+     print(" ")
+     purchase = input("Would you like to buy the soda? (Y/N) ")
+     if purchase.lower() == "yes" or purchase.lower() == "y":
+       print("Amount due: " + itemDict["Soda"])
+       print(" ")
+       print("Menu for deposits: \nf - five dollar bill \nt - toonie \nl - loonie \nq - quarter \nd - dime \nn - nickel")
+       while paid == 0:
+         money = input("Enter your deposit: ")
+         money = moneyDict[money]
+         money = float(money)
+         totalPaid = float(totalPaid)
+         totalPaid += money
+         amountDue = float(itemDict["Soda"].strip("$")) - (totalPaid)
+         if amountDue < 0:
+            amountDue = abs(amountDue)
+            toonies = math.floor(amountDue / 2)
+            loonies = math.floor(amountDue - toonies * 2)
+            quarters = (amountDue - toonies * 2 - loonies)
+            quarters = "%.2f" % quarters
+            quarters = float(quarters)
+            quarters = math.floor(quarters/0.25)
+            dimes = (amountDue - toonies * 2 - loonies - quarters * 0.25)
+            dimes = "%.1f" % dimes
+            dimes = float(dimes)
+            dimes = math.floor(dimes*10)
+            nickels = (amountDue - toonies * 2 - loonies - quarters * 0.25 - dimes / 10)
+            nickels = "%.2f" % nickels
+            nickels = float(nickels)
+            nickels = math.floor(nickels * 100 / 5)
+            totalChange = toonies * 2 + loonies * 1 + quarters * 0.25 + dimes * 0.1 + nickels * 0.05
+            toonies = str(toonies)
+            loonies = str(loonies)
+            quarters = str(quarters)
+            dimes = str(dimes)
+            nickels = str(nickels)
+            print(" ")
+            true = 1
+            paid = 1
+            print("Please take your change: $" + str("{0:.2f}".format(totalChange)))
+            if int(toonies) or int(loonies) or int(quarters) or int(dimes) or int(nickels) > 0:
+              if int(toonies) > 0:
+                print(toonies + str(" ") + coinList[0])
+                print(loonies + str(" ") + coinList[1])
+                print(quarters + str(" ") + coinList[2])
+                print(dimes + str(" ") + coinList[3])
+                print(nickels + str(" ") + coinList[4])
+              elif int(loonies) > 0:
+                print(loonies + str(" ") + coinList[1])
+                print(quarters + str(" ") + coinList[2])
+                print(dimes + str(" ") + coinList[3])
+                print(nickels + str(" ") + coinList[4])
+              elif int(quarters) > 0:
+                print(quarters + str(" ") + coinList[2])
+                print(dimes + str(" ") + coinList[3])
+                print(nickels + str(" ") + coinList[4])
+              elif int(dimes) > 0:
+                print(dimes + str(" ") + coinList[3])
+                print(nickels + str(" ") + coinList[4])
+              elif int(nickels) > 0:
+                print(nickels + str(" ") + coinList[4])
+         elif amountDue >= 0:
+          print("Amount due: " + str(amountDue))
+     elif purchase.lower() == "no" or purchase.lower() == "n":
+       print("Ok, have a good day.")
+       break
+     else:
+       print("Sorry... I didn't catch that.")
+       print(" ")
+  elif optVending == "3":
+     print("Cookies are " + itemDict["Cookie"] + ".")
+     print(" ")
+     purchase = input("Would you like to buy the cookie? (Y/N) ")
+     if purchase.lower() == "yes" or purchase.lower() == "y":
+       print("Amount due: " + itemDict["Cookie"])
+       print(" ")
+       print("Menu for deposits: \nf - five dollar bill \nt - toonie \nl - loonie \nq - quarter \nd - dime \nn - nickel")
+       while paid == 0:
+         money = input("Enter your deposit: ")
+         money = moneyDict[money]
+         money = float(money)
+         totalPaid = float(totalPaid)
+         totalPaid += money
+         amountDue = float(itemDict["Cookie"].strip("$")) - (totalPaid)
+         if amountDue < 0:
+            amountDue = abs(amountDue)
+            toonies = math.floor(amountDue / 2)
+            loonies = math.floor(amountDue - toonies * 2)
+            quarters = (amountDue - toonies * 2 - loonies)
+            quarters = "%.2f" % quarters
+            quarters = float(quarters)
+            quarters = math.floor(quarters/0.25)
+            dimes = (amountDue - toonies * 2 - loonies - quarters * 0.25)
+            dimes = "%.1f" % dimes
+            dimes = float(dimes)
+            dimes = math.floor(dimes*10)
+            nickels = (amountDue - toonies * 2 - loonies - quarters * 0.25 - dimes / 10)
+            nickels = "%.2f" % nickels
+            nickels = float(nickels)
+            nickels = math.floor(nickels * 100 / 5)
+            totalChange = toonies * 2 + loonies * 1 + quarters * 0.25 + dimes * 0.1 + nickels * 0.05
+            toonies = str(toonies)
+            loonies = str(loonies)
+            quarters = str(quarters)
+            dimes = str(dimes)
+            nickels = str(nickels)
+            print(" ")
+            true = 1
+            paid = 1
+            print("Please take your change: $" + str("{0:.2f}".format(totalChange)))
+            if int(toonies) or int(loonies) or int(quarters) or int(dimes) or int(nickels) > 0:
+              if int(toonies) > 0:
+                print(toonies + str(" ") + coinList[0])
+                print(loonies + str(" ") + coinList[1])
+                print(quarters + str(" ") + coinList[2])
+                print(dimes + str(" ") + coinList[3])
+                print(nickels + str(" ") + coinList[4])
+              elif int(loonies) > 0:
+                print(loonies + str(" ") + coinList[1])
+                print(quarters + str(" ") + coinList[2])
+                print(dimes + str(" ") + coinList[3])
+                print(nickels + str(" ") + coinList[4])
+              elif int(quarters) > 0:
+                print(quarters + str(" ") + coinList[2])
+                print(dimes + str(" ") + coinList[3])
+                print(nickels + str(" ") + coinList[4])
+              elif int(dimes) > 0:
+                print(dimes + str(" ") + coinList[3])
+                print(nickels + str(" ") + coinList[4])
+              elif int(nickels) > 0:
+                print(nickels + str(" ") + coinList[4])
+         elif amountDue >= 0:
+          print("Amount due: " + str(amountDue))
+     elif purchase.lower() == "no" or purchase.lower() == "n":
+       print("Ok, have a good day.")
+       break
+     else:
+       print("Sorry... I didn't catch that.")
+       print(" ") 
+  else: 
+     print("Sorry, please choose a number between 1 and 3.") 
+
